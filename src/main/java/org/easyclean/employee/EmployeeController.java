@@ -25,4 +25,9 @@ public class EmployeeController {
 	public Employee get(@PathVariable String employeeId){
 		return employeeRepository.findOne(employeeId);
 	}
+	
+	@RequestMapping(method= RequestMethod.GET)
+	public String get(){
+		return "This is Just a services....";
+	}
 }
