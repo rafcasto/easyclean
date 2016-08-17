@@ -26,7 +26,6 @@ task buildDocker(type: Docker, dependsOn: build) {
       into stageDir
     }
   }
-  inputDir = file('.')
 }
 
 repositories { jcenter()
