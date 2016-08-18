@@ -12,8 +12,15 @@ public class Employee {
 	
 	private String companyCode;
 	
+	private String newValue;
 	
 	
+	public String getNewValue() {
+		return newValue;
+	}
+	public void setNewValue(String newValue) {
+		this.newValue = newValue;
+	}
 	public String getCompanyCode() {
 		return companyCode;
 	}
