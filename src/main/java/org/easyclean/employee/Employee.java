@@ -10,7 +10,17 @@ public class Employee {
 	@Id
 	private String id;
 	
+	private String companyCode;
 	
+	
+	
+	public String getCompanyCode() {
+		return companyCode;
+	}
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
+	}
+
 	private String employeeCodigo;
 	public String getEmployeeCodigo() {
 		return employeeCodigo;
