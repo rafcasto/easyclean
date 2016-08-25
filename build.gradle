@@ -31,7 +31,6 @@ task buildDocker(type: Docker, dependsOn: build) {
 repositories { jcenter()
 }
 dependencies {
-  compile('org.springframework.cloud:spring-cloud-starter-eureka')
   compile "org.springframework.boot:spring-boot-starter-actuator"
   compile "org.springframework.boot:spring-boot-starter-web"
   compile "org.springframework.boot:spring-boot-starter-data-mongodb"
@@ -41,6 +40,6 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.SR4"
-		mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:1.1.1.RELEASE"
+		
 	}
 }
