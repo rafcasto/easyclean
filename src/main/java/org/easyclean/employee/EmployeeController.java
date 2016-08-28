@@ -1,5 +1,8 @@
 package org.easyclean.employee;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,8 +29,8 @@ public class EmployeeController {
 		return employeeRepository.findOne(employeeId);
 	}
 	
-	@RequestMapping(method= RequestMethod.GET)
-	public String get(){
-		return "This is Just a services....";
+	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
+	public Object[] get(){
+		return  employeeRepository.findAll().toArray();
 	}
 }
