@@ -1,0 +1,32 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	
+	
+	<style>
+			body{padding-top: 60px;}
+	</style>
+	
+    <link href="../static/bootstrap3/css/bootstrap.css" th:href="@{/bootstrap3/css/bootstrap.css}" rel="stylesheet" />
+ 
+	<link href="../static/login-register.css" th:href="@{/login-register.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+	
+	<script src="../static/jquery/jquery-1.10.2.js"  th:src="@{/jquery/jquery-1.10.2.js}" type="application/javascript" ></script>
+	<script src="../static/bootstrap3/js/bootstrap.js" th:src="@{/bootstrap3/js/bootstrap.js}" type="application/javascript" ></script>
+	<script src="../static/login-register.js" th:src="@{/login-register.js}" type="application/javascript"  >
+	
+	</script>
+	
+	
+
+</head>
+<body>
+<h1>Success</h1>
+  <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>   
+</body>
+</html>
