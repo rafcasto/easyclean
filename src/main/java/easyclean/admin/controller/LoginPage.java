@@ -11,9 +11,6 @@ public class LoginPage {
 		return "login";
 	}
 	
-	@RequestMapping({"/admin_employee"})
-	public String admin_employee(){		
-		return "admindashboard/employees";
-	}
+	
 	
 }
