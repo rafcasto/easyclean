@@ -23,7 +23,7 @@ public class EasycleanSecurity  extends WebSecurityConfigurerAdapter {
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/admin_employee")                
+                .defaultSuccessUrl("/employee/show_employees")                
                 .permitAll()                
                 .and()
             .logout();
