@@ -7,6 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="employees")
 public class Employee {
+	
+	
+	
 	@Id
 	private String id;
 	
@@ -78,6 +81,21 @@ public class Employee {
 	private boolean isActive;
 	private Date employeEndDate;
 	 
+	private String employeeName;
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	public String getEmployeeLastName() {
+		return employeeLastName;
+	}
+	public void setEmployeeLastName(String employeeLastName) {
+		this.employeeLastName = employeeLastName;
+	}
+
+	private String employeeLastName;
 	
 	
 	
