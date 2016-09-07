@@ -3,7 +3,40 @@
  xmlns:tiles="http://www.thymeleaf.org" 
  >
 <head>	
+
+    
+ 
+	
+
+	
+	
+	
+
   <th:block th:include="fragments/headerinc :: head"></th:block> 
+
+
+
+
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script type="text/javascript" th:inline="javascript">
+
+
+	 $(document).ready(function(){
+	      var date_input=$('input[name="date"]'); //our date input has the name "date"	      
+	      var options={
+	        format: 'mm/dd/yyyy',	        
+	        todayHighlight: true,
+	        autoclose: true,
+	      };
+	      date_input.datepicker(options);
+	    });
+	
+
+
+</script>
 </head>
 <body>
 <div class="wrapper">
@@ -78,44 +111,81 @@
                              	    <form th:action="@{/employee/save_employee}" th:object="${employee}" method="post">
                              	    <div class="row">
                                         <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>Company (disabled)</label>
-                                                <input name="field10" type="text" class="form-control"  placeholder="Company" value="Creative Code Inc." />
+                                      					
+                                      		<div class="form-group"> <!-- Date input -->
+        <label class="control-label" for="date">Start Date</label>
+        <input class="form-control" type="text" th:field="*{employeeStartDate}"
+       			
+        placeholder="yyyy-mm-dd"  id="pickyDate"/>
+<!--         <input class="form-control" id="date" th:field="*{employeeStartDate}" name="date" placeholder="MM/DD/YYY" type="text"/> -->
+      </div>			
+                                      					
+							                      
+
+							                					
                                                 <input type="hidden" name="companyCode"  th:value="LOPEZ01"/>
-                                            </div>
+                                            	 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Employee code</label>
-                                                <input name="employeeCodigo"  th:field="*{employeeCodigo}"  type="text" class="form-control" placeholder="Username" value="michael23" />
+                                                <input name="employeeCodigo"  th:field="*{employeeCodigo}"  type="text" class="form-control" placeholder="Employee Code" value="michael23" />
                                                 <span th:if="${#fields.hasErrors('employeeCodigo')}" th:errors="*{employeeCodigo}">Employee code is empty</span> 
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input name="employeeEmail" th:field="*{employeeEmail}"  type="email" class="form-control" placeholder="Email" />
-                                                <span th:if="${#fields.hasErrors('employeeEmail')}" th:errors="*{employeeEmail}">Employee email is empty</span>
+                                            <div class="form-group">                                            
+                                            	<label for="employeeIRD">IRD Number</label>
+                                                <input name="employeeIRD" th:field="*{employeeIRD}"  type="text" class="form-control" placeholder="IRD" />
+                                                <span th:if="${#fields.hasErrors('employeeIRD')}" th:errors="*{employeeIRD}">Employee IRD is empty</span>                                            	                                                                                                
                                             </div>
                                         </div>
                                     </div>
                                     
 									<div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input name="field7" type="text" class="form-control" placeholder="Company" value="Mike" />
+                                                <input name="employeeName" th:field="*{employeeName}" type="text" class="form-control" placeholder="First Name"  />
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-                                                <input name="field6" type="text" class="form-control" placeholder="Last Name" value="Andrew" />
+                                                <input name="employeeLastName" th:field="*{employeeLastName}" type="text" class="form-control" placeholder="Last Name"  />
                                             </div>
                                         </div>
                                         
                                         
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label for="sel1">Gender:</label>
+											  <select  name="employeeGender" th:field="*{employeeGender}" class="form-control" >
+											  	<option value="MX"  >MX</option>
+											  	<option value="M" >M</option>
+											  	<option value="F" >F</option>  
+											  </select>
+                                            </div>                                            
+                                    </div>
+                                                                                                                                                                
+                                    </div>
+                                    
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">                                            
+                                            	<label for="employeeEmail">Employee Email</label>
+                                                <input name="employeeEmail" th:field="*{employeeEmail}"  type="email" class="form-control" placeholder="test@test.com" />
+                                                <span th:if="${#fields.hasErrors('employeeEmail')}" th:errors="*{employeeEmail}">Employee Email is empty</span>                                            	                                                                                                
+                                            </div>
+                                        </div>
                                         
+                                        <div class="col-md-6">
+                                        <div class="form-group">                                            
+                                            	<label for="employeePhone">Employee Mobile</label>
+                                                <input name="employeePhone" th:field="*{employeePhone}"  type="text" class="form-control" placeholder="5555555555" />
+                                                <span th:if="${#fields.hasErrors('employeePhone')}" th:errors="*{employeePhone}">Employee Phone is empty</span>                                            	                                                                                                
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                     
@@ -145,7 +215,7 @@
             </div>
         </div>
      
-
+	  
        
 	<th:block th:include="fragments/footer :: footer"></th:block>
 

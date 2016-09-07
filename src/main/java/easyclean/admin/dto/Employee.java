@@ -3,9 +3,13 @@ package easyclean.admin.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,6 +24,20 @@ public class Employee implements Serializable{
 	
 	private String companyCode;
 	
+	private String employeeName;
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	public String getEmployeeLastName() {
+		return employeeLastName;
+	}
+	public void setEmployeeLastName(String employeeLastName) {
+		this.employeeLastName = employeeLastName;
+	}
+	private String employeeLastName; 
 	
 	public String getCompanyCode() {
 		return companyCode;
@@ -92,7 +110,8 @@ public class Employee implements Serializable{
 	
 	private String employeePhone;
 	private String employeeIRD;
-	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date employeeStartDate;
 	private boolean isActive;
 	private Date employeEndDate;

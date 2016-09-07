@@ -18,7 +18,7 @@ public class EasycleanSecurity  extends WebSecurityConfigurerAdapter {
         .antMatchers("/login").permitAll()
         .antMatchers(HttpMethod.POST,"/login").permitAll()
         .antMatchers("/login**").permitAll()                
-        .antMatchers("/static/**","/jquery/**","/bootstrap3/**","/js/**","/static/assets/**","/static/assets/css/**","/static/assets/fonts/**","/static/assets/sass/**","/static/assets/js/**","/static/assets/img").permitAll()         
+        .antMatchers("/static/**","/jquery/**","/bootstrap3/**","/locales/**","/js/**","/static/assets/**","/static/assets/css/**","/static/assets/fonts/**","/static/assets/sass/**","/static/assets/js/**","/static/assets/img").permitAll()         
         .anyRequest().authenticated()
                 .and()
             .formLogin()
