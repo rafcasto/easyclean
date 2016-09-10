@@ -8,7 +8,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="roster")
 public class Roster {
 	@Id
-	private int id;
+	private String id;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	private Clients clients;
 	public Clients getClients() {
 		return clients;
