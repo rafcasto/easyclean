@@ -8,8 +8,14 @@ public class Clients {
 	
 	@Id
 	private String id;
+	private String companyCode;
 	
-	
+	public String getCompanyCode() {
+		return companyCode;
+	}
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
+	}
 	public String getId() {
 		return id;
 	}
@@ -72,6 +78,8 @@ public class Clients {
 	public void setCustomerEndDate(Date customerEndDate) {
 		this.customerEndDate = customerEndDate;
 	}
+	
+	
 	private String customerPointOfContactName;
 	private String customerPointOfContactNumber;
 	private String customerPointOfContactEmail;
