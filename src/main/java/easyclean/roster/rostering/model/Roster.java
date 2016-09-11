@@ -22,39 +22,14 @@ public class Roster {
 	public void setClients(Clients clients) {
 		this.clients = clients;
 	}
-	public Employee getEmployee() {
-		return employee;
+	
+	List<RosterTemplate> rosterTemplate;
+	public List<RosterTemplate> getRosterTemplate() {
+		return rosterTemplate;
 	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setRosterTemplate(List<RosterTemplate> rosterTemplate) {
+		this.rosterTemplate = rosterTemplate;
 	}
-	public Date getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
-	public Date getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
-	}
-	public String getDay() {
-		return day;
-	}
-	public void setDay(String day) {
-		this.day = day;
-	}
-	public List<Tasks> getTasks() {
-		return tasks;
-	}
-	public void setTasks(List<Tasks> tasks) {
-		this.tasks = tasks;
-	}
-	private Employee employee;
-	private Date startTime; 
-	private Date endTime; 
-	private String day;
-	private List<Tasks> tasks;
+	
+	
 }
