@@ -1,11 +1,11 @@
 package easyclean.roster.rostering.model;
 
 public class Tasks {
- private int id; 
- public int getId() {
+ private String id; 
+ public String getId() {
 	return id;
 }
-public void setId(int id) {
+public void setId(String id) {
 	this.id = id;
 }
 public String getTaskName() {
