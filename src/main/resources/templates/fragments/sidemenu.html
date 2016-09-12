@@ -31,8 +31,10 @@
                         <p>User Profile</p>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="table.html">
+<!--                 Uncomment line once logic to handle active menu is added -->
+<!--                 <li class="active"> -->
+<li>
+                    <a th:href="@{/employee/show_employees}">
                         <i class="pe-7s-id"></i>
                         <p>Employees</p>
                     </a>
@@ -44,9 +46,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="icons.html">
+                    <a th:href="@{/portfolio/show_portfolio}">
                         <i class="pe-7s-portfolio"></i>
-                        <p>portafolio</p>
+                        <p>portfolio</p>
                     </a>
                 </li>                
                 <li>

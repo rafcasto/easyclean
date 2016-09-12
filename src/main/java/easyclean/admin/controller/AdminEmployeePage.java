@@ -37,9 +37,7 @@ public class AdminEmployeePage {
 	            return "admindashboard/employees_add";
 	      }else{
 	    	  serviceEmployee.addEmployee(employee);
-	      }
-		 System.out.println("Date "  + employee.getEmployeeStartDate().toString());
-		 
+	      }		 		 
 		return "redirect:/employee/show_employees";
 	}
 	

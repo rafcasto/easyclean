@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import easyclean.admin.dto.Employee;
 import easyclean.admin.model.resttemplate.resttemplateCofiguration;
@@ -17,7 +16,8 @@ import easyclean.admin.model.resttemplate.resttemplateCofiguration;
 public class EmployeesImpl implements employeeService{
 	@Autowired
 	resttemplateCofiguration<Employee> result;
-	
+	@Value("${employee.port}")
+	private String servicePort;
 	@Value("${service.url}")
 	private String serviceURL;
 	@Value("${employee}")	
@@ -30,7 +30,7 @@ public class EmployeesImpl implements employeeService{
 	@Override
 	public ArrayList<Employee> findAll() {
 		// TODO Auto-generated method stub
-		String restTemplate = serviceURL + employeeFindALL;		
+		String restTemplate = serviceURL+":"+servicePort+"/" + employeeFindALL;		
 		ResponseEntity<Employee[]> employeeList = result.getRestTemplate().getForEntity(restTemplate, Employee[].class);
 		ArrayList<Employee> listOfEmployees = new ArrayList<Employee>(Arrays.asList(employeeList.getBody()));
 		return listOfEmployees;
@@ -39,7 +39,7 @@ public class EmployeesImpl implements employeeService{
 	@Override
 	public Employee addEmployee(Employee employeeDTO) {
 		// TODO Auto-generated method stub		
-		return  result.getRestTemplatePost(employeeDTO, employeeService);
+		return  result.getRestTemplatePost(employeeDTO, employeeService,servicePort);
 	}
 
 }

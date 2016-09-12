@@ -39,20 +39,20 @@ public class RestTemplateConf<E extends Serializable> implements resttemplateCof
 
 	
 	@Override
-	public E getRestTemplatePost(E entity, String url) {
+	public E getRestTemplatePost(E entity, String url,String servicePort) {
 		// TODO Auto-generated method stub
 		
 		RestTemplate restTemplate = new RestTemplate();		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> entityHtml = new HttpEntity<String>(getJSONRequest(entity),headers);		
-		E postForObject = extracted(entity, url, restTemplate, entityHtml);
+		E postForObject = extracted(entity, url, restTemplate, entityHtml,servicePort);
 		return postForObject;
 	}
 
 	@SuppressWarnings("unchecked")
-	private E extracted(E entity, String url, RestTemplate restTemplate, HttpEntity<String> entityHtml) {
-		return (E) restTemplate.postForObject(serviceURL+url, entityHtml, entity.getClass());
+	private E extracted(E entity, String url, RestTemplate restTemplate, HttpEntity<String> entityHtml,String servicePort) {
+		return (E) restTemplate.postForObject(serviceURL+":"+servicePort+"/"+url, entityHtml, entity.getClass());
 	}
 	
 	
