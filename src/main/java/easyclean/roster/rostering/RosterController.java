@@ -27,8 +27,8 @@ public class RosterController {
 	
 	
 	@RequestMapping(method= RequestMethod.GET, value="/{rosterId}")
-	public Roster get(@PathVariable String rosterID){
-		return rosterRepository.findOne(rosterID);
+	public Roster get(@PathVariable String rosterId){
+		return rosterRepository.findOne(rosterId);
 	}
 	
 	@RequestMapping(method= RequestMethod.POST, value="/remove/{rosterId}")

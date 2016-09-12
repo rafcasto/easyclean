@@ -3,9 +3,15 @@ package easyclean.roster.rostering.model;
 import java.util.Date;
 
 public class Clients {
-private String id;
+	private String id;
+	private String companyCode;
 	
-	
+	public String getCompanyCode() {
+		return companyCode;
+	}
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
+	}
 	public String getId() {
 		return id;
 	}
@@ -68,6 +74,8 @@ private String id;
 	public void setCustomerEndDate(Date customerEndDate) {
 		this.customerEndDate = customerEndDate;
 	}
+	
+	
 	private String customerPointOfContactName;
 	private String customerPointOfContactNumber;
 	private String customerPointOfContactEmail;
