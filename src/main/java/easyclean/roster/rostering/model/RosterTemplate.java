@@ -19,16 +19,16 @@ public class RosterTemplate {
 		this.employee = employee;
 	}
 	
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 	public String getDay() {
@@ -43,8 +43,15 @@ public class RosterTemplate {
 	public void setTasks(List<Tasks> tasks) {
 		this.tasks = tasks;
 	}
-	private Date startTime; 
-	private Date endTime; 
+	private Double totalHours;
+	public Double getTotalHours() {
+		return totalHours;
+	}
+	public void setTotalHours(Double totalHours) {
+		this.totalHours = totalHours;
+	}
+	private String startTime; 
+	private String endTime; 
 	private String day;
 	private List<Tasks> tasks;
 }
