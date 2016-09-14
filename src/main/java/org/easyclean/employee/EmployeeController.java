@@ -33,4 +33,10 @@ public class EmployeeController {
 	public Object[] get(){
 		return  employeeRepository.findAll().toArray();
 	}
+	
+	
+	@RequestMapping(value = "/findAll/{employeeName}", method = RequestMethod.GET)
+	public Object[] getEmployeesByName(String employeeName){
+		return  employeeRepository.findByThePersonsFirstname(employeeName).toArray();
+	}
 }
