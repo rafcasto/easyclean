@@ -40,7 +40,7 @@ public class EmployeeController {
 	
 	
 	@RequestMapping(value = "/findAll/{employeeName}", method = RequestMethod.GET)
-	public Object[] getEmployeesByName(String employeeName){
+	public Object[] getEmployeesByName(@PathVariable String employeeName){
 		log.info("Searching for: " + employeeName);
 		return  employeeRepository.findByThePersonsFirstname(employeeName).toArray();
 	}
