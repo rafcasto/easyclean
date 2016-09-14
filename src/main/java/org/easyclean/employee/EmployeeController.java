@@ -3,6 +3,8 @@ package org.easyclean.employee;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/employee")
 public class EmployeeController {
 
+	Logger log = Logger.getLogger(EmployeeController.class.getName());
+	
 	@Autowired
 	EmployeeRepository employeeRepository;
 	
@@ -37,6 +41,7 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/findAll/{employeeName}", method = RequestMethod.GET)
 	public Object[] getEmployeesByName(String employeeName){
+		log.info("Searching for: " + employeeName);
 		return  employeeRepository.findByThePersonsFirstname(employeeName).toArray();
 	}
 }

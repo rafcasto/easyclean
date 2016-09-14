@@ -7,5 +7,5 @@ import org.springframework.data.mongodb.repository.Query;
 
 public interface EmployeeRepository extends MongoRepository<Employee, String>{
 	 @Query("{employeeName : {$regex : ?0}}")
-	  List<Employee> findByThePersonsFirstname(String firstname);
+	  List<Employee> findByThePersonsFirstname(String employeeName);
 }
