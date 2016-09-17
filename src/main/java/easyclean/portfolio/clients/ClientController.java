@@ -20,6 +20,10 @@ public class ClientController {
 		return result;
 	}
 	
+	@RequestMapping(method=RequestMethod.POST,value="/remove")
+	public void remove(@RequestBody Clients client){
+		clients.delete(client);				
+	}
 	
 	@RequestMapping(method= RequestMethod.GET, value="/{clientId}")
 	public Clients get(@PathVariable String clientId){
