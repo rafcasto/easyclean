@@ -33,7 +33,7 @@ public class EmployeeController {
 		return employeeRepository.findOne(employeeId);
 	}
 	
-	@RequestMapping(method= RequestMethod.POST)
+	@RequestMapping(method= RequestMethod.POST,value="/remove")
 	public void remove(@RequestBody Employee emp){
 		 employeeRepository.delete(emp);
 	}
