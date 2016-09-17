@@ -33,6 +33,11 @@ public class EmployeeController {
 		return employeeRepository.findOne(employeeId);
 	}
 	
+	@RequestMapping(method= RequestMethod.POST)
+	public void remove(@RequestBody Employee emp){
+		employeeRepository.delete(emp);
+	}
+	
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
 	public Object[] get(){
 		return  employeeRepository.findAll().toArray();
