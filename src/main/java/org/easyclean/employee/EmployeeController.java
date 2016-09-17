@@ -35,7 +35,7 @@ public class EmployeeController {
 	
 	@RequestMapping(method= RequestMethod.POST)
 	public void remove(@RequestBody Employee emp){
-		employeeRepository.delete(emp);
+		 employeeRepository.delete(emp);
 	}
 	
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
