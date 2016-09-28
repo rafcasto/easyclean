@@ -15,8 +15,8 @@ apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 
 jar {
-	baseName = 'easyclean.timesheets'
-	version = '0.0.1-SNAPSHOT'
+	baseName = 'easyclean_timesheets'
+	version = '0.0.1'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
