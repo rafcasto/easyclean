@@ -24,7 +24,7 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 	public List<TimeSheets> getTimeSheet(String startDate,String endDate,List<Roster> rosters) {
 		// TODO Auto-generated method stub
 		List<TimeSheets> listOfTiemsheets = new ArrayList<TimeSheets>();
-		
+		try{
 		double total = 0.0;
 		for(Roster roster:rosters){
 			for(LocalDate date = convertDate(startDate); (date.isBefore(convertDate(endDate) )|| date.equals(convertDate(endDate)) );date = date.plusDays(1)){			
@@ -38,6 +38,9 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		}
 		
 		log.info("total hours " + total);
+		}catch(Exception exption){
+			log.error("something went wrong: " + exption.getStackTrace());
+		}
 		return listOfTiemsheets;
 	}
 	
