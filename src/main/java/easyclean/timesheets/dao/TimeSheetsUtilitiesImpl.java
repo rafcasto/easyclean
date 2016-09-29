@@ -54,6 +54,7 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		timeSheets.setEmployee(rosterTemplate.getEmployee());
 		timeSheets.setCompanyCod(roster.getClients().getCompanyCode());
 		timeSheets.setDay(date.toString());
+		timeSheets.setHours(rosterTemplate.getTotalHours());
 		return timeSheets;
 	}
 	
