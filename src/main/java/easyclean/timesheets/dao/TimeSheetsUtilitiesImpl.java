@@ -29,9 +29,11 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		for(Roster roster:rosters){
 			for(LocalDate date = convertDate(startDate); (date.isBefore(convertDate(endDate) )|| date.equals(convertDate(endDate)) );date = date.plusDays(1)){			
 				for(RosterTemplate rosterTemplate : roster.getRosterTemplate()){
-					if(date.getDayOfWeek().name().equals(rosterTemplate.getDay())){					
+					if(date.getDayOfWeek().name().equals(rosterTemplate.getDay())){	
+						if(isVildTemplate(roster, rosterTemplate, date)){
 						listOfTiemsheets.add(getTimeSheets(roster, rosterTemplate, date));
 						total = total + rosterTemplate.getTotalHours();
+						}
 					}
 				}									
 			}			
@@ -42,6 +44,23 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 			log.error("something went wrong: " + exption.getStackTrace());
 		}
 		return listOfTiemsheets;
+	}
+	
+	private boolean isVildTemplate(Roster roster,RosterTemplate rosterTemplate,LocalDate date){
+		boolean isvalid= true;
+		if(roster.getClients().equals("") || roster.getClients().equals(null)){
+			return false;
+		}
+		if(rosterTemplate.getEmployee().equals("") || rosterTemplate.getEmployee().equals(null)){
+			return false;
+		}
+		if(roster.getClients().getCompanyCode().equals("") || roster.getClients().getCompanyCode().equals(null)){
+			return false;
+		}
+		if(rosterTemplate.getTotalHours().equals("") || rosterTemplate.getTotalHours().equals(null)){
+			return false;
+		}
+		return isvalid;
 	}
 	
 	private TimeSheets getTimeSheets(Roster roster,RosterTemplate rosterTemplate,LocalDate date){
