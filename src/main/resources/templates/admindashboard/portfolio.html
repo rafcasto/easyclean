@@ -91,8 +91,9 @@
                                        <td th:text="${cl.customerPointOfContactEmail}">Test@Email.test</td>
                                        <td th:text="${cl.customerPointOfContactNumber}">0000000000</td>
                                        <td>
-                                       		<a th:href="@{/roster/show_roster/} + ${cl.id}"><span class="pe-7s-notebook"></span></a>
-                                       		<a href="#"><span class="pe-7s-edit"></span></a>
+                                       		<a th:href="@{/roster/show_roster/} + ${cl.id}" class="btn btn-primary"><span class="pe-7s-notebook"></span></a>
+                                       		<a href="#" class="btn btn-primary"><span class="pe-7s-edit"></span></a>
+                                       		<a th:href="@{/portfolio/delete_clients/} + ${cl.id}" class="btn btn-danger"><span class="pe-7s-trash"></span></a>
                                        	
                                        	</td>
                                        </tr>

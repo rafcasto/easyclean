@@ -23,8 +23,9 @@ public class EmployeesImpl implements employeeService{
 	@Value("${employee}")	
 	private String employeeService;
 	@Value("${employee.findall}")
-	private String employeeFindALL;
-	
+	private String employeeFindALL;	
+	@Value("${employee.remove}")
+	private String removeService;
 	
 	
 	@Override
@@ -39,7 +40,32 @@ public class EmployeesImpl implements employeeService{
 	@Override
 	public Employee addEmployee(Employee employeeDTO) {
 		// TODO Auto-generated method stub		
+		employeeDTO.setFullName(employeeDTO.getEmployeeName() + " " + employeeDTO.getEmployeeLastName());
 		return  result.getRestTemplatePost(employeeDTO, employeeService,servicePort);
+	}
+
+	@Override
+	public ArrayList<Employee> findAllByName(String name) {
+		// TODO Auto-generated method stub
+		String restTemplate = serviceURL+":"+servicePort+"/" + employeeFindALL+"/"+name;		
+		ResponseEntity<Employee[]> employeeList = result.getRestTemplate().getForEntity(restTemplate, Employee[].class);
+		ArrayList<Employee> listOfEmployees = new ArrayList<Employee>(Arrays.asList(employeeList.getBody()));
+		return listOfEmployees;
+	}
+
+	@Override
+	public Employee findEmployee(String idEmployee) {
+		// TODO Auto-generated method stub
+		String restTemplate = serviceURL+":"+servicePort+"/" + employeeService + "/" + idEmployee;		
+		ResponseEntity<Employee> employeeList = result.getRestTemplate().getForEntity(restTemplate, Employee.class);		
+		return employeeList.getBody();
+	}
+
+	@Override
+	public void removeEmployee(Employee employeeDTO) {
+		// TODO Auto-generated method stub
+		result.getRestTemplatePost(employeeDTO, removeService, servicePort);
+		
 	}
 
 }

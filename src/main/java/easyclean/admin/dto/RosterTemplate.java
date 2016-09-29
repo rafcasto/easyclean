@@ -1,27 +1,13 @@
 package easyclean.admin.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RosterTemplate implements Serializable{
 	
-	private String total;
 	
-	public String getTotal() {
-		return total;
-	}
-	public void setTotal(String total) {
-		this.total = total;
-	}
 	private String id;
 	public String getId() {
 		
@@ -38,16 +24,16 @@ public class RosterTemplate implements Serializable{
 		this.employee = employee;
 	}
 	
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 	public String getDay() {
@@ -62,12 +48,17 @@ public class RosterTemplate implements Serializable{
 	public void setTasks(List<Tasks> tasks) {
 		this.tasks = tasks;
 	}
-	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(iso = ISO.TIME)
-	private Date startTime; 
-	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(iso = ISO.TIME)
-	private Date endTime; 
+	
+	private Double totalHours;
+	public Double getTotalHours() {
+		return totalHours;
+	}
+	public void setTotalHours(Double totalHours) {
+		this.totalHours = totalHours;
+	}
+	private String startTime; 
+	
+	private String endTime; 
 	private String day;
 	private List<Tasks> tasks;
 }

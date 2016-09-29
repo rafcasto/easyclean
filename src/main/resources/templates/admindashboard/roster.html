@@ -4,6 +4,60 @@
  >
 <head>	
   <th:block th:include="fragments/headerinc :: head"></th:block> 
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+  <script type="text/javascript" th:inline="javascript">
+  
+  
+  	  function setData(data,index){
+  		$("#rosterTemplate"+index+"\\.employee\\.id").val(data.id);
+  		$("#rosterTemplate"+index+"\\.employee\\.employeeCodigo").val(data.employeeCodigo);
+  		$("#rosterTemplate"+index+"\\.employee\\.employeeLastName").val(data.employeeLastName);
+  		
+  	  }
+  
+	  function getData(objct){
+		  var  nameOf = $("#rosterTemplate"+objct+"\\.employee\\.employeeName").val();
+		  $("#rosterTemplate"+objct+"\\.employee\\.employeeName").autocomplete(
+			{
+				source: function(request, response) {
+					$.ajax({
+					url: '/employee/list_employees/'+nameOf,
+					type: "GET",
+					data: { term: request.term },
+					 
+					dataType: "json",
+					 
+					success: function(data) {					
+					response($.map(data, function(v,i){
+					setData(v,objct);
+					return {
+					label: v.employeeName,
+					value: v.employeeName
+					};
+					}));
+					}
+					});
+					}
+				
+	  			
+		  });
+		  
+		    var field = "rosterTemplate["+objct+"].employee.employeeName";
+		    var fieldByID = "rosterTemplate"+objct+".employee.employeeName";
+			 
+			var  nameJquery = document.getElementsByName(field)[0].value;
+	    	console.log(objct);
+	    	console.log(nameJquery);
+	    	console.log(nameOf);
+										
+	    }  
+	  
+  
+		
+  
+  	
+  </script>
 </head>
 <body>
 <div class="wrapper">
@@ -92,7 +146,28 @@
                                     <tbody>
                                       <tr th:each="rosterTml,status: *{rosterTemplate}">
                                        <td >
-                                       			<input type="text" th:field='*{rosterTemplate[__${status.index}__].employee.employeeName}' th:value="${rosterTml.employee.employeeName}" placeholder='Name' class="form-control" />
+                                       			<input type="text" 
+                                       				th:onkeyup="'javascript:getData(\''+${status.index}+'\');'" 
+                                       				th:field='*{rosterTemplate[__${status.index}__].employee.employeeName}'                                       				                                        				                                       			
+                                       				th:value="${rosterTml.employee.employeeName}" 
+                                       				placeholder='Name' 
+                                       				class="form-control" />
+                                       				
+                                       		<input type="hidden"                                        		 
+                                       				th:field='*{rosterTemplate[__${status.index}__].employee.id}'                                       				                                        				                                       			
+                                       				
+                                       				 />
+											
+											<input type="hidden"                                        		 
+                                       				th:field='*{rosterTemplate[__${status.index}__].employee.employeeLastName}'                                       				                                        				                                       			
+                                       				 
+                                       				 />                                       				 
+												                                       				                                       				 
+                                       				 <input type="hidden"                                        		 
+                                       				th:field='*{rosterTemplate[__${status.index}__].employee.employeeCodigo}'                                       				                                        				                                       			
+                                       				 
+                                       				 />
+                                       				
                                        </td>
                                        <td >
                                         <select class="form-control" th:field="*{rosterTemplate[__${status.index}__].day}" th:remove="all-but-first">
@@ -109,7 +184,7 @@
                                        				<input type="text" th:field='*{rosterTemplate[__${status.index}__].endTime}' th:value="${rosterTml.endTime}" placeholder='00:00' class="form-control" />
                                        </td>
                                        <td>
-                                       				<input type="text" th:field='*{rosterTemplate[__${status.index}__].total}' th:value="${rosterTml.total}" placeholder='00' class="form-control" />
+                                       				<input type="text" th:field='*{rosterTemplate[__${status.index}__].totalHours}' th:value="${rosterTml.totalHours}" placeholder='00' class="form-control" />
                                        </td>
                                        <td>
                                        		<button type="submit" name="removeRow" th:value="${status.index}" class="btn btn-danger"  >

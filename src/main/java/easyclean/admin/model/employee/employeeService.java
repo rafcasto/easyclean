@@ -10,5 +10,7 @@ import easyclean.admin.dto.Employee;
 public interface employeeService {
 	public ArrayList<Employee> findAll();
 	public Employee addEmployee(Employee employeeDTO);
-	
+	public ArrayList<Employee> findAllByName(String name);
+	public Employee findEmployee(String idEmployee);
+	public void removeEmployee(Employee employeeDTO);
 }

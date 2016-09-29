@@ -25,7 +25,9 @@ public class PortfolioImpl implements portfolioService{
 	@Value("${portfolio.get}")	
 	private String ClientsService;
 	@Value("${portfolio.findall}")
-	private String ClientsFindALL;
+	private String ClientsFindALL;	
+	@Value("${portfolio.remove}")
+	private String removeClient;
 	
 	static Logger log = Logger.getLogger(PortfolioImpl.class.getName());
 	
@@ -62,6 +64,12 @@ public class PortfolioImpl implements portfolioService{
 		}
 				
 		return clientResponse.getBody();
+	}
+
+	@Override
+	public void removeClient(Clients clients) {
+		// TODO Auto-generated method stub
+		result.getRestTemplatePost(clients, removeClient, servicePort);
 	}
 
 }

@@ -80,7 +80,8 @@
                                         <th>Codigo</th>
                                     	<th>Name</th>
                                     	<th>Email</th>
-                                    	<th>Phone</th>                                    	
+                                    	<th>Phone</th>
+                                    	<th>Actions</th>                                    	
                                     </thead>
                                     <tbody>
                                        <tr th:each="emp: ${employeesList}">
@@ -88,6 +89,9 @@
                                        <td th:text="${emp.fullName}">Test Name</td>
                                        <td th:text="${emp.employeeEmail}">Test@Email.test</td>
                                        <td th:text="${emp.employeePhone}">0000000000</td>
+                                       <td >											
+                                       			<a th:href="@{/employee/delete_employees/} + ${emp.id}" class="btn btn-danger"><span class="pe-7s-trash"></span></a>                                       	                                       
+                                       </td>
                                        </tr>
                                     </tbody>
                                 </table>

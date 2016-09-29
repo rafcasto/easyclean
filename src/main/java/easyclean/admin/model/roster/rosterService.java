@@ -15,5 +15,5 @@ public interface rosterService {
 	public Roster addRoster(Roster rosterDto);
 	public List<RosterTemplate> addRow(List<RosterTemplate> rosterTemplate);
 	public List<RosterTemplate> removeRow(List<RosterTemplate> rosterTemplate,int index);
-
+	
 }

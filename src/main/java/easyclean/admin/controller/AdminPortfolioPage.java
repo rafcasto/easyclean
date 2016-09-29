@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import easyclean.admin.dto.Clients;
+import easyclean.admin.dto.Employee;
 import easyclean.admin.model.portfolio.portfolioService;
 
 
@@ -46,4 +48,13 @@ public class AdminPortfolioPage {
 		model.addAttribute("clients",new Clients());			
 		return "admindashboard/portfolio_add";
 	}
+	
+	
+	@RequestMapping(value = "/delete_clients/{idClients}", method = RequestMethod.GET)
+	public String deleteClients(@PathVariable String idClients){
+		Clients dto = serviceClients.findClient(idClients);
+		serviceClients.removeClient(dto);		
+		return "redirect:/portfolio/show_portfolio";
+	}
+	
 }
