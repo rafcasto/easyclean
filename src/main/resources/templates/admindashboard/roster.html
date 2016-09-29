@@ -115,10 +115,11 @@
                 </div>
             </div>
         </nav>
+<div class="content">
 
-<form th:action="@{/roster/save_roster}" th:object="${roster}" method="post">
-        <div class="content">
+        
             <div class="container-fluid">
+            <form th:action="@{/roster/save_roster}" th:object="${roster}" method="post">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -215,10 +216,12 @@
                  	<br />
                  	</div>
                 </div>
+                </form>
             </div>
+            
         </div>
          
-</form>
+
        
 	<th:block th:include="fragments/footer :: footer"></th:block>
 
