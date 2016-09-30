@@ -3,14 +3,11 @@ package easyclean.timesheets.dao;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import easyclean.timesheets.times.PaySleep;
 import easyclean.timesheets.times.Roster;
 import easyclean.timesheets.times.RosterTemplate;
 import easyclean.timesheets.times.TimeSheets;
