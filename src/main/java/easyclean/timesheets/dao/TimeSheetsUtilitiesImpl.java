@@ -70,8 +70,9 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		log.info("Employee Name " + rosterTemplate.getEmployee().getEmployeeName());
 		log.info("Employee Name " + rosterTemplate.getEmployee().getEmployeeCodigo());
 		timeSheets.setClient(roster.getClients());
-		timeSheets.setEmployee(rosterTemplate.getEmployee());
-		timeSheets.setCompanyCod(roster.getClients().getCompanyCode());
+		timeSheets.setEmployee(rosterTemplate.getEmployee());		
+		timeSheets.setStartTime(rosterTemplate.getStartTime());
+		timeSheets.setEndTime(rosterTemplate.getEndTime());		
 		timeSheets.setDay(date.toString());
 		timeSheets.setHours(rosterTemplate.getTotalHours());
 		return timeSheets;
