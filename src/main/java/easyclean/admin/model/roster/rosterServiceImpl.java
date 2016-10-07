@@ -1,6 +1,7 @@
 package easyclean.admin.model.roster;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -107,7 +108,11 @@ public class rosterServiceImpl implements rosterService{
 	@Override
 	public ArrayList<Roster> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		String restTemplate = serviceURL+":"+servicePort+"/" + rosterFindALL;
+		ResponseEntity<Roster[]> employeeList = result.getRestTemplate().getForEntity(restTemplate, Roster[].class);
+		ArrayList<Roster> listOfEmployees = new ArrayList<Roster>(Arrays.asList(employeeList.getBody()));
+		return listOfEmployees;
+		
 	}
 
 
