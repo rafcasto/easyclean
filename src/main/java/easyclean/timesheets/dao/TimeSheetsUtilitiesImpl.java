@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import easyclean.timesheets.times.Employee;
 import easyclean.timesheets.times.Roster;
 import easyclean.timesheets.times.RosterTemplate;
 import easyclean.timesheets.times.TimeSheets;
@@ -22,21 +23,20 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		// TODO Auto-generated method stub
 		List<TimeSheets> listOfTiemsheets = new ArrayList<TimeSheets>();
 		try{
-		double total = 0.0;
+
 		for(Roster roster:rosters){
 			for(LocalDate date = convertDate(startDate); (date.isBefore(convertDate(endDate) )|| date.equals(convertDate(endDate)) );date = date.plusDays(1)){			
 				for(RosterTemplate rosterTemplate : roster.getRosterTemplate()){
 					if(date.getDayOfWeek().name().equals(rosterTemplate.getDay())){	
 						if(isVildTemplate(roster, rosterTemplate, date)){
 						listOfTiemsheets.add(getTimeSheets(roster, rosterTemplate, date));
-						total = total + rosterTemplate.getTotalHours();
+						
 						}
 					}
 				}									
 			}			
 		}
-		
-		log.info("total hours " + total);
+			
 		}catch(Exception exption){
 			log.error("something went wrong: " + exption.getStackTrace());
 		}
@@ -72,6 +72,7 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		timeSheets.setEndTime(rosterTemplate.getEndTime());		
 		timeSheets.setDay(date.toString());
 		timeSheets.setHours(rosterTemplate.getTotalHours());
+		timeSheets.setTotalHours(rosterTemplate.getTotalHours() * rosterTemplate.getEmployee().getProfile().getSalaryPerHour());
 		return timeSheets;
 	}
 	
