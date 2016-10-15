@@ -2,8 +2,23 @@ package easyclean.timesheets.times;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
 public class Employee {
-private String id;
+	
+	private Profiles profile;
+	
+	public Profiles getProfile() {
+		return profile;
+	}
+	public void setProfile(Profiles profile) {
+		this.profile = profile;
+	}
+
+	@Id
+	private String id;
 	
 	private String companyCode;
 	
@@ -106,4 +121,6 @@ private String id;
 	}
 	
 	private String fullName;
+	
+	
 }
