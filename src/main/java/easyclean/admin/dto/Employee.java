@@ -1,10 +1,13 @@
 package easyclean.admin.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
-public class Employee {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Employee implements Serializable{
 	
 	private Profiles profile;
 	

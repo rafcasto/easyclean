@@ -1,7 +1,11 @@
 package easyclean.admin.dto;
 
+import java.io.Serializable;
 
-public class Profiles {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Profiles implements Serializable{
 	
 	private String id;
 	private double salaryPerHour;
