@@ -8,8 +8,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="employees")
 public class Employee {
 	
+	private Profiles profile;
 	
-	
+	public Profiles getProfile() {
+		return profile;
+	}
+	public void setProfile(Profiles profile) {
+		this.profile = profile;
+	}
+
 	@Id
 	private String id;
 	
