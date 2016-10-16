@@ -109,6 +109,16 @@
                             </div>
                              <div class="content">
                              	    <form th:action="@{/employee/save_employee}" th:object="${employee}" method="post">
+                             	    
+                             	    <div class="row">
+                                        <div class="col-md-5">
+                                        <div class="form-group"> <!-- Date input -->
+                                         <select id="profile" th:field="*{profile.id}" class="form-control">                								
+                								<option th:each="p : ${profiles}" th:value="${p.id}"  th:text="${p.profileName}"></option>
+            							</select>
+                                        </div>
+                                        </div>
+                                    </div>
                              	    <div class="row">
                                         <div class="col-md-5">
                                       					
@@ -160,8 +170,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                             <label for="sel1">Gender:</label>
-											  <select  name="employeeGender" th:field="*{employeeGender}" class="form-control" >
-											  	<option value="MX"  >MX</option>
+											  <select  name="employeeGender" th:field="*{employeeGender}" class="form-control" >											  	
 											  	<option value="M" >M</option>
 											  	<option value="F" >F</option>  
 											  </select>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import easyclean.admin.dto.Employee;
 import easyclean.admin.model.employee.employeeService;
+import easyclean.admin.model.profiles.ProfilesServices;
 
 
 @Controller()
@@ -26,6 +27,9 @@ public class AdminEmployeePage {
 	
 	@Autowired
 	employeeService serviceEmployee;
+	
+	@Autowired
+	ProfilesServices profiles;
 	
 	@RequestMapping(value = "/show_employees", method = RequestMethod.GET)
 	public String show_employees(Model model){
@@ -46,6 +50,7 @@ public class AdminEmployeePage {
 			 log.error("Something wrong with the validation form" + bindingResult.getAllErrors().toString());
 	            return "admindashboard/employees_add";
 	      }else{
+	    	  employee.setProfile(profiles.findProfile(employee.getProfile().getId()));	    	  
 	    	  serviceEmployee.addEmployee(employee);
 	      }		 		 
 		return "redirect:/employee/show_employees";
@@ -53,6 +58,7 @@ public class AdminEmployeePage {
 	
 	@RequestMapping(value = "/add_employee",method = RequestMethod.GET)
 	public String admin_employee_add(Model model){
+		model.addAttribute("profiles",profiles.findAll());
 		model.addAttribute("employee",new Employee());			
 		return "admindashboard/employees_add";
 	}

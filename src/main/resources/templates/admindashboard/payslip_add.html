@@ -214,8 +214,8 @@
                                     	<th>Day</th>
                                     	<th>Start time</th>
                                     	<th>End Time</th>
-                                    	<th>Total</th>     
-                                    	                      	
+                                    	<th>Total Hours</th>     
+                                    	<th>Total Dollars</th>                      	
                                     </thead>
                                     <tbody>
                                       <tr th:each="timeSheets,status: *{timeSheets}">
@@ -225,6 +225,7 @@
                                        				th:field='*{timeSheets[__${status.index}__].employee.employeeName}'                                       				                                        				                                       			
                                        				th:value="${timeSheets.employee.employeeName}" 
                                        				placeholder='Name' 
+                                       				disabled="disabled"
                                        				class="form-control" />
                                        				
                                        		<input type="hidden"                                        		 

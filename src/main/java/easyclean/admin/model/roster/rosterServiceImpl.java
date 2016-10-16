@@ -83,7 +83,7 @@ public class rosterServiceImpl implements rosterService{
 
 	
 	private RosterTemplate initRosterTemplate(){
-		RosterTemplate rosterTemplate = new RosterTemplate();
+		RosterTemplate rosterTemplate = new RosterTemplate();		
 		rosterTemplate.setEmployee(new Employee());
 		return rosterTemplate;
 	}
@@ -100,7 +100,8 @@ public class rosterServiceImpl implements rosterService{
 	@Override
 	public Roster addRoster(Roster rosterDto) {
 		// TODO Auto-generated method stub
-		rosterDto.setClients(portfolioService.findClient(rosterDto.getId()));
+		
+		rosterDto.setClients(portfolioService.findClient(rosterDto.getId()));		
 		return  result.getRestTemplatePost(rosterDto, rosterService,servicePort);
 	}
 

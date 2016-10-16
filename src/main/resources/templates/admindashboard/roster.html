@@ -13,6 +13,8 @@
   		$("#rosterTemplate"+index+"\\.employee\\.id").val(data.id);
   		$("#rosterTemplate"+index+"\\.employee\\.employeeCodigo").val(data.employeeCodigo);
   		$("#rosterTemplate"+index+"\\.employee\\.employeeLastName").val(data.employeeLastName);
+  		$("#rosterTemplate"+index+"\\.employee\\.profile\\.salaryPerHour").val(data.profile.salaryPerHour);
+  		$("#rosterTemplate"+index+"\\.employee\\.profile\\.profileName").val(data.profile.profileName);
   		
   	  }
   
@@ -32,8 +34,8 @@
 					response($.map(data, function(v,i){
 					setData(v,objct);
 					return {
-					label: v.employeeName,
-					value: v.employeeName
+					label: v.fullName,
+					value: v.fullName
 					};
 					}));
 					}
@@ -166,6 +168,16 @@
 												                                       				                                       				 
                                        				 <input type="hidden"                                        		 
                                        				th:field='*{rosterTemplate[__${status.index}__].employee.employeeCodigo}'                                       				                                        				                                       			
+                                       				 
+                                       				 />
+                                       				 
+                                       				                                				 <input type="hidden"                                        		 
+                                       				th:field='*{rosterTemplate[__${status.index}__].employee.profile.salaryPerHour}'                                       				                                        				                                       			
+                                       				 
+                                       				 />
+                                       				 
+                                       				                                				 <input type="hidden"                                        		 
+                                       				th:field='*{rosterTemplate[__${status.index}__].employee.profile.profileName}'                                       				                                        				                                       			
                                        				 
                                        				 />
                                        				

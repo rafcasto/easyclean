@@ -48,7 +48,9 @@ public class AdminRosterPage {
 	}
 	
 	@RequestMapping(value = "/save_roster", params = "addRow"	,method = RequestMethod.POST)
-	public String addRow(@Valid Roster roster, BindingResult bindingResult, Model model){						
+	public String addRow(@Valid Roster roster, BindingResult bindingResult, Model model){
+		
+		
 		roster.setRosterTemplate(rosterService.addRow(roster.getRosterTemplate()));		
 		rosterService.addRoster(roster);
 		return "redirect:/roster/show_roster/"+roster.getId();
