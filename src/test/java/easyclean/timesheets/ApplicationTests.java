@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import easyclean.timesheets.dao.TimeSheetsUtilitiesService;
 import easyclean.timesheets.times.Clients;
 import easyclean.timesheets.times.Employee;
+import easyclean.timesheets.times.Profiles;
 import easyclean.timesheets.times.Roster;
 import easyclean.timesheets.times.RosterTemplate;
 
@@ -42,11 +43,16 @@ public class ApplicationTests {
 	
 	private RosterTemplate getRosterTempalte(String day,double hours){
 		RosterTemplate rosterTemplate = new RosterTemplate();
+		Profiles profile = new Profiles();
+		profile.setProfileName("Cleanner");
+		profile.setSalaryPerHour(15.5);
 		Employee employee = new Employee();
 		employee.setCompanyCode("TESTCOMPANYCODE");
 		employee.setEmployeeCodigo("EmployeeCodigo");
-		employee.setEmployeeName("TESTEMPLOYEENAME");		
+		employee.setEmployeeName("TESTEMPLOYEENAME");
+		employee.setProfile(profile);
 		rosterTemplate.setDay(day);
+		
 		rosterTemplate.setTotalHours(hours);
 		rosterTemplate.setEmployee(employee);
 		return rosterTemplate;
