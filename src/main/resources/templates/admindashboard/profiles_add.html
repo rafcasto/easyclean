@@ -113,99 +113,34 @@
                                 <h4 class="title">Add a New Employee</h4>
                             </div>
                              <div class="content">
-                             	    <form th:action="@{/payslip/save_payslip}" th:object="${payslip}" method="post">
+                             	    <form th:action="@{/profiles/save_profile}" th:object="${profiles}" method="post">
                              	    <input type="hidden" name="companyCode"  th:value="LOPEZ01"/>
                              	   
-                             	    <div class="row">
-                                        <div class="col-sm-3">
-                                      					
-                                      		<div class="form-group"> <!-- Date input -->
-        <label class="control-label" for="date">Start Date</label>
-        <input class="form-control" type="text" th:field="*{startDate}"
-       			
-        placeholder="yyyy-mm-dd"  id="pickyDate"/>
-
-      </div>			
-       </div>
-           <div class="col-sm-3">                    
-                           <div class="form-group"> <!-- Date input -->
-        <label class="control-label" for="date">End Date</label>
-        <input class="form-control" type="text" th:field="*{endDate}"
-       			
-        placeholder="yyyy-mm-dd"  id="pickyDate"/>
-      </div>			           					
-      
-      
-      	
-                                    <button type="submit" class="btn btn-primary btn-fill pull-right">
-                                    <span class="pe-7s-add-user "> Generate Payslip </span>
-                                    </button>
-							  </div>                    
-			                					
-                                                
-                                            	 
-                                
-					
-    
-								
-                                  
-
-                                   
-                                    </div>
+                             	
                                     
-                                    
-                                    
-			<hr />	
+	
 			
 			<div class="row">
-				<div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
-                                	 <thead>
-                                        <th>Employee Name</th>
-                                    	<th>Day</th>
-                                    	<th>Start time</th>
-                                    	<th>End Time</th>
-                                    	<th>Total</th>     
-                                    	                      	
-                                    </thead>
-                                    <tbody>
-                                      <tr th:each="timeSheets,status: *{timeSheets}">
-                                      <td>
-                                      <input type="text" 
-                                       				th:onkeyup="'javascript:getData(\''+${status.index}+'\');'" 
-                                       				th:field='*{timeSheets[__${status.index}__].employee.employeeName}'                                       				                                        				                                       			
-                                       				th:value="${timeSheets.employee.employeeName}" 
-                                       				placeholder='Name' 
-                                       				class="form-control" />
-                                       				
-                                       		<input type="hidden"                                        		 
-                                       				th:field='*{timeSheets[__${status.index}__].employee.id}'                                       				                                        				                                       			
-                                       				
-                                       				 />
-											
-											<input type="hidden"                                        		 
-                                       				th:field='*{timeSheets[__${status.index}__].employee.employeeLastName}'                                       				                                        				                                       			
-                                       				 
-                                       				 />                                       				 
-												                                       				                                       				 
-                                       				 <input type="hidden"                                        		 
-                                       				th:field='*{timeSheets[__${status.index}__].employee.employeeCodigo}'                                       				                                        				                                       			
-                                       				 
-                                       				 />
-                                      
-                                      </td>
-                                      <td th:text="${timeSheets.day}" />
-                                      <td th:text="*{timeSheets[__${status.index}__].startTime}" />	
-                                      <td th:text="*{timeSheets[__${status.index}__].endTime}" />
-                                      <td th:text="*{timeSheets[__${status.index}__].hours}" />
-                                      
-                                      
-                                      </tr>
-                                      </tbody>
-                                </table>
-                            </div>
+				   <div class="col-sm-3">
+				   	<div class="form-group"> 
+				   		<label class="control-label" for="profileName">Profile Name</label>
+				   		<input class="form-control" th:field="*{profileName}" name="profileName" />
+				   	</div>
+				   </div>
+				   
+				   <div class="col-sm-3">
+				   	<div class="form-group"> 
+				   		<label class="control-label" for="salaryPerHour">Salary per hour</label>
+				   		<input class="form-control" th:field="*{salaryPerHour}" />
+				   	</div>
+				   </div>
 			
 			</div>
+			
+			  					<button type="submit" class="btn btn-primary btn-fill pull-right">
+                                    <span class="pe-7s-add-user "> Add Profile </span>
+                                    </button>
+                                    <div class="clearfix"></div>
                              	    </form>
                              </div>
                     </div>

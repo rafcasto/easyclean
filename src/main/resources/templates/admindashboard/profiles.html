@@ -59,7 +59,7 @@
                                     <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#" th:href="@{/payslip/add_payslip}">Generate Payslip</a></li>                                                                                                                           
+                                <li><a href="#" th:href="@{/profiles/add_profiles}">Add a profile</a></li>                                                                                                                           
                                 <li class="divider"></li>                                
                               </ul>
                         </li>
@@ -97,7 +97,14 @@
                                     	<th>Options</th>                               	
                                     </thead>
                                     <tbody>
-           
+         						   <tr th:each="pro: ${profileList}">
+                                       <td th:text="${pro.profileName}"></td>
+                                       <td th:text="${pro.salaryPerHour}">Test Name</td>
+                                       <td th:text="${pro.irdPersantage}">Test@Email.test</td>                                       
+                                       <td >											
+                                       			<a th:href="@{/profiles/delete_profiles/} + ${pro.id}" class="btn btn-danger"><span class="pe-7s-trash"></span></a>                                       	                                       
+                                       </td>
+                                       </tr>
                                     </tbody>
                                 </table>
                                                        
