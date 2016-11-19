@@ -218,28 +218,29 @@
                                     	<th>Total Dollars</th>                      	
                                     </thead>
                                     <tbody>
-                                      <tr th:each="timeSheets,status: *{timeSheets}">
+                                    <span th:each="paysliptPerEmployee,status: *{paysliptPerEmployee}">
+                                    	<tr th:each="timeSheets,status: ${paysliptPerEmployee.timeSheets}" >
                                       <td>
                                       <input type="text" 
                                        				th:onkeyup="'javascript:getData(\''+${status.index}+'\');'" 
-                                       				th:field='*{timeSheets[__${status.index}__].employee.employeeName}'                                       				                                        				                                       			
-                                       				th:value="${timeSheets.employee.employeeName}" 
+                                       				th:field='*{paysliptPerEmployee[__${status.index}__].employee.employeeName}'                                       				                                        				                                       			
+                                       				th:value="${paysliptPerEmployee.employee.employeeName}" 
                                        				placeholder='Name' 
                                        				disabled="disabled"
                                        				class="form-control" />
                                        				
                                        		<input type="hidden"                                        		 
-                                       				th:field='*{timeSheets[__${status.index}__].employee.id}'                                       				                                        				                                       			
+                                       				th:field='*{paysliptPerEmployee[__${status.index}__].employee.id}'                                       				                                        				                                       			
                                        				
                                        				 />
 											
 											<input type="hidden"                                        		 
-                                       				th:field='*{timeSheets[__${status.index}__].employee.employeeLastName}'                                       				                                        				                                       			
+                                       				th:field='*{paysliptPerEmployee[__${status.index}__].employee.employeeLastName}'                                       				                                        				                                       			
                                        				 
                                        				 />                                       				 
 												                                       				                                       				 
                                        				 <input type="hidden"                                        		 
-                                       				th:field='*{timeSheets[__${status.index}__].employee.employeeCodigo}'                                       				                                        				                                       			
+                                       				th:field='*{paysliptPerEmployee[__${status.index}__].employee.employeeCodigo}'                                       				                                        				                                       			
                                        				 
                                        				 />
                                       
@@ -249,7 +250,9 @@
                                       <td th:text="*{timeSheets[__${status.index}__].endTime}" />
                                       <td th:text="*{timeSheets[__${status.index}__].hours}" />
                                       <td th:text="*{timeSheets[__${status.index}__].totalHours}" />                                                                            
-                                      </tr>
+                                      </tr>                                    
+                                    </span>
+                                      
                                       </tbody>
                                 </table>
                             </div>
