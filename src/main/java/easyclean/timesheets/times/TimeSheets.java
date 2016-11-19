@@ -22,12 +22,7 @@ public class TimeSheets {
 	public void setClient(Clients client) {
 		this.client = client;
 	}
-	public Employee getEmployee() {
-		return employee;
-	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
+	
 	public String getCompanyCod() {
 		return companyCod;
 	}
@@ -61,7 +56,7 @@ public class TimeSheets {
 	
 	private double hours;
 	private Clients client;
-	private Employee employee;
+	
 	private String companyCod;
 	
 }

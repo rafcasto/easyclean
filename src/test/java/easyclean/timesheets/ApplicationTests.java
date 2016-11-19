@@ -50,6 +50,7 @@ public class ApplicationTests {
 		employee.setCompanyCode("TESTCOMPANYCODE");
 		employee.setEmployeeCodigo("EmployeeCodigo");
 		employee.setEmployeeName("TESTEMPLOYEENAME");
+		employee.setEmployeeEmail("rafaelc@gmail.com");
 		employee.setProfile(profile);
 		rosterTemplate.setDay(day);
 		
@@ -68,7 +69,7 @@ public class ApplicationTests {
 		List<Roster> rosters = new ArrayList<Roster>();
 		rosters.add(getRoster());
 		rosters.add(getRoster());
-		Assert.notEmpty(timeSheetsUtilities.getTimeSheet(testStartDate, testEndDate, rosters));
+		Assert.notEmpty(timeSheetsUtilities.getPayslipByEmployee(testStartDate, testEndDate, rosters));
 	}
 	
 //	@Test

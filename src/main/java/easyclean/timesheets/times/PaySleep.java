@@ -9,6 +9,14 @@ public class PaySleep {
 	@Id
 	private String id;
 	
+	
+	private List<PayslipByEmployee> paysliptPerEmployee;
+	public List<PayslipByEmployee> getPaysliptPerEmployee() {
+		return paysliptPerEmployee;
+	}
+	public void setPaysliptPerEmployee(List<PayslipByEmployee> paysliptPerEmployee) {
+		this.paysliptPerEmployee = paysliptPerEmployee;
+	}
 	public String getId() {
 		return id;
 	}
@@ -34,12 +42,7 @@ public class PaySleep {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public List<TimeSheets> getTimeSheets() {
-		return timeSheets;
-	}
-	public void setTimeSheets(List<TimeSheets> timeSheets) {
-		this.timeSheets = timeSheets;
-	}
+	
 	public double getTotal() {
 		return total;
 	}
@@ -59,7 +62,7 @@ public class PaySleep {
 	private String companyCode;
 	private String startDate;
 	private String endDate;
-	private List<TimeSheets> timeSheets;
+	
 	private double total;
 	
 }

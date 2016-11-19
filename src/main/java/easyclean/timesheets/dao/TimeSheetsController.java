@@ -21,7 +21,7 @@ public class TimeSheetsController {
 
 	@RequestMapping(method=RequestMethod.POST)
 	public PaySleep create(@RequestBody PaySleep paysleep){
-		paysleep.setTimeSheets(utils.getTimeSheet(paysleep.getStartDate(), paysleep.getEndDate(), paysleep.getRosters()));
+		paysleep.setPaysliptPerEmployee(utils.getPayslipByEmployee(paysleep.getStartDate(), paysleep.getEndDate(), paysleep.getRosters()));
 		PaySleep paysleepResult = timesheetService.save(paysleep);		
 		return paysleepResult;
 	}
