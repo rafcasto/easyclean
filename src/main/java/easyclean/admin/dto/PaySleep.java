@@ -1,18 +1,21 @@
 package easyclean.admin.dto;
 
-import java.io.Serializable;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class PaySleep implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+public class PaySleep {
+
 	private String id;
 	
+	
+	private List<PayslipByEmployee> paysliptPerEmployee;
+	public List<PayslipByEmployee> getPaysliptPerEmployee() {
+		return paysliptPerEmployee;
+	}
+	public void setPaysliptPerEmployee(List<PayslipByEmployee> paysliptPerEmployee) {
+		this.paysliptPerEmployee = paysliptPerEmployee;
+	}
 	public String getId() {
 		return id;
 	}
@@ -38,12 +41,7 @@ public class PaySleep implements Serializable{
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public List<TimeSheets> getTimeSheets() {
-		return timeSheets;
-	}
-	public void setTimeSheets(List<TimeSheets> timeSheets) {
-		this.timeSheets = timeSheets;
-	}
+	
 	public double getTotal() {
 		return total;
 	}
@@ -63,7 +61,7 @@ public class PaySleep implements Serializable{
 	private String companyCode;
 	private String startDate;
 	private String endDate;
-	private List<TimeSheets> timeSheets;
+	
 	private double total;
 	
 }
