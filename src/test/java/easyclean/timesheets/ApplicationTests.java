@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import easyclean.timesheets.dao.TimeSheetsUtilitiesService;
 import easyclean.timesheets.times.Clients;
 import easyclean.timesheets.times.Employee;
+import easyclean.timesheets.times.PayslipByEmployee;
 import easyclean.timesheets.times.Profiles;
 import easyclean.timesheets.times.Roster;
 import easyclean.timesheets.times.RosterTemplate;
@@ -69,6 +70,10 @@ public class ApplicationTests {
 		List<Roster> rosters = new ArrayList<Roster>();
 		rosters.add(getRoster());
 		rosters.add(getRoster());
+		for(PayslipByEmployee ps : timeSheetsUtilities.getPayslipByEmployee(testStartDate, testEndDate, rosters)){
+			System.out.println(ps.getEmployee().getEmployeeEmail());
+			
+		}
 		Assert.notEmpty(timeSheetsUtilities.getPayslipByEmployee(testStartDate, testEndDate, rosters));
 	}
 	

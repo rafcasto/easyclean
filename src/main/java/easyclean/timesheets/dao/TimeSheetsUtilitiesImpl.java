@@ -4,11 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -25,37 +20,28 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 	
 	static Logger log = Logger.getLogger(TimeSheetsUtilitiesImpl.class.getName());
 	@Override
-	public List<PayslipByEmployee> getPayslipByEmployee(String startDate,String endDate,List<Roster> rosters) {
+	public List<TimeSheets> getTimeSheet(String startDate,String endDate,List<Roster> rosters) {
 		// TODO Auto-generated method stub
-		List<PayslipByEmployee> listOfPaySlip = new ArrayList<PayslipByEmployee>();
+		List<TimeSheets> listOfTiemsheets = new ArrayList<TimeSheets>();
 		try{
-		
+
 		for(Roster roster:rosters){
 			for(LocalDate date = convertDate(startDate); (date.isBefore(convertDate(endDate) )|| date.equals(convertDate(endDate)) );date = date.plusDays(1)){			
-				for(RosterTemplate rosterTemplate : roster.getRosterTemplate().stream().filter(distinctByKey(p -> p.getEmployee().getEmployeeEmail())).collect(Collectors.toList())){
-					//Finding Employee
-					PayslipByEmployee paySliptByEmployee = new PayslipByEmployee();
-					paySliptByEmployee.setEmployee(rosterTemplate.getEmployee());
-					List<TimeSheets> listOfTiemsheets = new ArrayList<TimeSheets>();
-					for(RosterTemplate times:roster.getRosterTemplate().stream().filter(p -> p.getEmployee().getEmployeeEmail().equals(rosterTemplate.getEmployee().getEmployeeEmail())).collect(Collectors.toList())){
-						//Finding hours by employee											
-						if(date.getDayOfWeek().name().equals(times.getDay())){	
-							if(isVildTemplate(roster, times, date)){
-							listOfTiemsheets.add(getTimeSheets(roster, times, date));						
-							}
+				for(RosterTemplate rosterTemplate : roster.getRosterTemplate()){
+					if(date.getDayOfWeek().name().equals(rosterTemplate.getDay())){	
+						if(isVildTemplate(roster, rosterTemplate, date)){
+						listOfTiemsheets.add(getTimeSheets(roster, rosterTemplate, date));
+						
 						}
 					}
-					paySliptByEmployee.setTimeSheets(listOfTiemsheets);			
-					listOfPaySlip.add(paySliptByEmployee);
-				}													
+				}									
 			}			
 		}
 			
 		}catch(Exception exption){
 			log.error("something went wrong: " + exption.getStackTrace());
-			exption.printStackTrace();
 		}
-		return listOfPaySlip;
+		return listOfTiemsheets;
 	}
 	
 	private boolean isVildTemplate(Roster roster,RosterTemplate rosterTemplate,LocalDate date){
@@ -82,7 +68,7 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		log.info("Employee Name " + rosterTemplate.getEmployee().getEmployeeName());
 		log.info("Employee Name " + rosterTemplate.getEmployee().getEmployeeCodigo());
 		timeSheets.setClient(roster.getClients());
-		//timeSheets.setEmployee(rosterTemplate.getEmployee());		
+		timeSheets.setEmployee(rosterTemplate.getEmployee());		
 		timeSheets.setStartTime(rosterTemplate.getStartTime());
 		timeSheets.setEndTime(rosterTemplate.getEndTime());		
 		timeSheets.setDay(date.toString());
@@ -102,16 +88,13 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		}
 		return date;
 	}
-	
-	
-	public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
-	    Map<Object,Boolean> seen = new ConcurrentHashMap<>();
-	    return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+
+	@Override
+	public List<PayslipByEmployee> getPayslipByEmployee(String startDate, String endDate, List<Roster> roster) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-
-	
-	
 	
 	
 	
