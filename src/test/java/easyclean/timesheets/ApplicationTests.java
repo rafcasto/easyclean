@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import easyclean.timesheets.dao.TimeSheetsUtilitiesService;
 import easyclean.timesheets.times.Clients;
 import easyclean.timesheets.times.Employee;
+import easyclean.timesheets.times.PaySleep;
 import easyclean.timesheets.times.PayslipByEmployee;
 import easyclean.timesheets.times.Profiles;
 import easyclean.timesheets.times.Roster;
@@ -76,6 +77,14 @@ public class ApplicationTests {
 			
 		}
 		Assert.notEmpty(timeSheetsUtilities.getTimeSheet(testStartDate, testEndDate, rosters));
+		PaySleep ps = new PaySleep();
+		ps.setTimeSheets(timeSheetsUtilities.getTimeSheet(testStartDate, testEndDate, rosters));
+		Assert.notEmpty(timeSheetsUtilities.getPayslipByEmployee(ps));
+		ps.setPaysliptPerEmployee(timeSheetsUtilities.getPayslipByEmployee(ps));
+		System.out.println("######################################");
+		for(PayslipByEmployee pemp : ps.getPaysliptPerEmployee()){
+			System.out.println(pemp.getEmployee().getEmployeeEmail());
+		}
 	}
 	
 //	@Test
