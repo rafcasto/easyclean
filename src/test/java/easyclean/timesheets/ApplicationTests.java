@@ -17,6 +17,7 @@ import easyclean.timesheets.times.PayslipByEmployee;
 import easyclean.timesheets.times.Profiles;
 import easyclean.timesheets.times.Roster;
 import easyclean.timesheets.times.RosterTemplate;
+import easyclean.timesheets.times.TimeSheets;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -70,11 +71,11 @@ public class ApplicationTests {
 		List<Roster> rosters = new ArrayList<Roster>();
 		rosters.add(getRoster());
 		rosters.add(getRoster());
-		for(PayslipByEmployee ps : timeSheetsUtilities.getPayslipByEmployee(testStartDate, testEndDate, rosters)){
+		for(TimeSheets ps : timeSheetsUtilities.getTimeSheet(testStartDate, testEndDate, rosters)){
 			System.out.println(ps.getEmployee().getEmployeeEmail());
 			
 		}
-		Assert.notEmpty(timeSheetsUtilities.getPayslipByEmployee(testStartDate, testEndDate, rosters));
+		Assert.notEmpty(timeSheetsUtilities.getTimeSheet(testStartDate, testEndDate, rosters));
 	}
 	
 //	@Test

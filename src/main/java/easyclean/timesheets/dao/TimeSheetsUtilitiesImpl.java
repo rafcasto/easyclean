@@ -4,11 +4,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import easyclean.timesheets.times.Employee;
+import easyclean.timesheets.times.PaySleep;
 import easyclean.timesheets.times.PayslipByEmployee;
 import easyclean.timesheets.times.Roster;
 import easyclean.timesheets.times.RosterTemplate;
@@ -63,10 +68,7 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 	
 	private TimeSheets getTimeSheets(Roster roster,RosterTemplate rosterTemplate,LocalDate date){
 		TimeSheets timeSheets = new TimeSheets();
-		log.info("Day " + date.getDayOfWeek().name());
-		log.info("Day " + date.toString());
-		log.info("Employee Name " + rosterTemplate.getEmployee().getEmployeeName());
-		log.info("Employee Name " + rosterTemplate.getEmployee().getEmployeeCodigo());
+		
 		timeSheets.setClient(roster.getClients());
 		timeSheets.setEmployee(rosterTemplate.getEmployee());		
 		timeSheets.setStartTime(rosterTemplate.getStartTime());
@@ -88,11 +90,24 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		}
 		return date;
 	}
+	
+	
+	public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+	    Map<Object,Boolean> seen = new ConcurrentHashMap<>();
+	    return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+	}
 
 	@Override
-	public List<PayslipByEmployee> getPayslipByEmployee(String startDate, String endDate, List<Roster> roster) {
+	public List<PayslipByEmployee> getPayslipByEmployee(PaySleep paylip) {
 		// TODO Auto-generated method stub
-		return null;
+		List<PayslipByEmployee> payslipByEmployee = new ArrayList<>();
+		for(TimeSheets tms : paylip.getTimeSheets().stream().filter(distinctByKey(p -> p.getEmployee().getEmployeeEmail())).collect(Collectors.toList())){
+			PayslipByEmployee employeePayslip = new PayslipByEmployee();
+			employeePayslip.setEmployee(tms.getEmployee());			
+			employeePayslip.setTimeSheets(paylip.getTimeSheets().stream().filter(p -> p.getEmployee().getEmployeeEmail().equals(tms.getEmployee().getEmployeeEmail())).collect(Collectors.toList()));
+			payslipByEmployee.add(employeePayslip);									
+		}
+		return payslipByEmployee;
 	}
 
 	

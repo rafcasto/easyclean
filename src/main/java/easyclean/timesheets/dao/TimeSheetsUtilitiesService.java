@@ -13,6 +13,6 @@ import easyclean.timesheets.times.TimeSheets;
 public interface TimeSheetsUtilitiesService {
 
 	public List<TimeSheets> getTimeSheet(String startDate,String endDate,List<Roster> roster);
-	public List<PayslipByEmployee> getPayslipByEmployee(String startDate,String endDate,List<Roster> roster);
+	public List<PayslipByEmployee> getPayslipByEmployee(PaySleep payslip);
 	
 }

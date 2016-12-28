@@ -56,6 +56,13 @@ public class PaySleep {
 		this.rosters = rosters;
 	}
 	private List<PayslipByEmployee> paysliptPerEmployee;
+	public List<PayslipByEmployee> getPaysliptPerEmployee() {
+		return paysliptPerEmployee;
+	}
+	public void setPaysliptPerEmployee(List<PayslipByEmployee> paysliptPerEmployee) {
+		this.paysliptPerEmployee = paysliptPerEmployee;
+	}
+
 	private String companyCode;
 	private String startDate;
 	private String endDate;
