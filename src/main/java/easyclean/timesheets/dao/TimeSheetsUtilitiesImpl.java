@@ -44,7 +44,7 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		}
 			
 		}catch(Exception exption){
-			log.error("something went wrong: " + exption.getStackTrace());
+			exption.printStackTrace();
 		}
 		return listOfTiemsheets;
 	}
