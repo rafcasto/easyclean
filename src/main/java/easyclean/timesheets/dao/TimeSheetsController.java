@@ -1,5 +1,7 @@
 package easyclean.timesheets.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import easyclean.timesheets.times.PaySleep;
+import easyclean.timesheets.times.PayslipByEmployee;
 
 @RestController
 @RequestMapping("/timesheets")
@@ -22,7 +25,8 @@ public class TimeSheetsController {
 	@RequestMapping(method=RequestMethod.POST)
 	public PaySleep create(@RequestBody PaySleep paysleep){
 		paysleep.setTimeSheets(utils.getTimeSheet(paysleep.getStartDate(), paysleep.getEndDate(), paysleep.getRosters()));
-		paysleep.setPaysliptPerEmployee(utils.getPayslipByEmployee(paysleep));		
+		List<PayslipByEmployee> payslipList = utils.getPayslipByEmployee(paysleep); 
+		paysleep.setPaysliptPerEmployee(payslipList);		
 		PaySleep paysleepResult = timesheetService.save(paysleep);		
 		return paysleepResult;
 	}
