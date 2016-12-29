@@ -17,7 +17,6 @@ public class Employee {
 		this.profile = profile;
 	}
 
-	@Id
 	private String id;
 	
 	private String companyCode;

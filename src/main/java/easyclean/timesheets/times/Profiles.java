@@ -1,11 +1,7 @@
 package easyclean.timesheets.times;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-
 public class Profiles {
-	@Id
+	
 	private String id;
 	private double salaryPerHour;
 	public String getId() {

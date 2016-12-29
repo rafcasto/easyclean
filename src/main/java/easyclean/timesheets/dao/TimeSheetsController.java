@@ -24,8 +24,11 @@ public class TimeSheetsController {
 
 	@RequestMapping(method=RequestMethod.POST)
 	public PaySleep create(@RequestBody PaySleep paysleep){
+		System.out.println("This part is Ok before generating timesheets");
 		paysleep.setTimeSheets(utils.getTimeSheet(paysleep.getStartDate(), paysleep.getEndDate(), paysleep.getRosters()));
-		List<PayslipByEmployee> payslipList = utils.getPayslipByEmployee(paysleep); 
+		System.out.println("This part is Ok after generating timesheets");
+		List<PayslipByEmployee> payslipList = utils.getPayslipByEmployee(paysleep);
+		System.out.println("This part is Ok before generating payslip by employee");
 		paysleep.setPaysliptPerEmployee(payslipList);		
 		PaySleep paysleepResult = timesheetService.save(paysleep);		
 		return paysleepResult;
