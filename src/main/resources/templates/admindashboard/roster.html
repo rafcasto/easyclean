@@ -13,6 +13,8 @@
   		$("#rosterTemplate"+index+"\\.employee\\.id").val(data.id);
   		$("#rosterTemplate"+index+"\\.employee\\.employeeCodigo").val(data.employeeCodigo);
   		$("#rosterTemplate"+index+"\\.employee\\.employeeLastName").val(data.employeeLastName);
+  		$("#rosterTemplate"+index+"\\.employee\\.employeeEmail").val(data.employeeEmail);
+  		
   		$("#rosterTemplate"+index+"\\.employee\\.profile\\.salaryPerHour").val(data.profile.salaryPerHour);
   		$("#rosterTemplate"+index+"\\.employee\\.profile\\.profileName").val(data.profile.profileName);
   		
@@ -168,6 +170,11 @@
 												                                       				                                       				 
                                        				 <input type="hidden"                                        		 
                                        				th:field='*{rosterTemplate[__${status.index}__].employee.employeeCodigo}'                                       				                                        				                                       			
+                                       				 
+                                       				 />
+
+<input type="hidden"                                        		 
+                                       				th:field='*{rosterTemplate[__${status.index}__].employee.employeeEmail}'                                       				                                        				                                       			
                                        				 
                                        				 />
                                        				 

@@ -1,6 +1,11 @@
 package easyclean.admin.dto;
 
-public class TimeSheets {
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class TimeSheets implements Serializable{
 	
 	private String date;
 	
@@ -22,7 +27,12 @@ public class TimeSheets {
 	public void setClient(Clients client) {
 		this.client = client;
 	}
-	
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 	public String getCompanyCod() {
 		return companyCod;
 	}
@@ -56,7 +66,7 @@ public class TimeSheets {
 	
 	private double hours;
 	private Clients client;
-	
+	private Employee employee;
 	private String companyCod;
 	
 }

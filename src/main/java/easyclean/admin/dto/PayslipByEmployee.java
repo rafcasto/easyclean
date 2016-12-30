@@ -1,8 +1,11 @@
 package easyclean.admin.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PayslipByEmployee {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PayslipByEmployee implements Serializable{
 
 	private Employee employee;
 	private List<TimeSheets> timeSheets;

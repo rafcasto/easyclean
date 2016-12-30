@@ -1,21 +1,16 @@
 package easyclean.admin.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
-public class PaySleep {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PaySleep implements Serializable{
 
 	private String id;
 	
-	
-	private List<PayslipByEmployee> paysliptPerEmployee;
-	public List<PayslipByEmployee> getPaysliptPerEmployee() {
-		return paysliptPerEmployee;
-	}
-	public void setPaysliptPerEmployee(List<PayslipByEmployee> paysliptPerEmployee) {
-		this.paysliptPerEmployee = paysliptPerEmployee;
-	}
 	public String getId() {
 		return id;
 	}
@@ -41,7 +36,12 @@ public class PaySleep {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	
+	public List<TimeSheets> getTimeSheets() {
+		return timeSheets;
+	}
+	public void setTimeSheets(List<TimeSheets> timeSheets) {
+		this.timeSheets = timeSheets;
+	}
 	public double getTotal() {
 		return total;
 	}
@@ -57,11 +57,18 @@ public class PaySleep {
 	public void setRosters(List<Roster> rosters) {
 		this.rosters = rosters;
 	}
+	private List<PayslipByEmployee> paysliptPerEmployee;
+	public List<PayslipByEmployee> getPaysliptPerEmployee() {
+		return paysliptPerEmployee;
+	}
+	public void setPaysliptPerEmployee(List<PayslipByEmployee> paysliptPerEmployee) {
+		this.paysliptPerEmployee = paysliptPerEmployee;
+	}
 
 	private String companyCode;
 	private String startDate;
 	private String endDate;
-	
+	private List<TimeSheets> timeSheets;
 	private double total;
 	
 }

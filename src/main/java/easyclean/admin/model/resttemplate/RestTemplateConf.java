@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RestTemplateConf<E extends Serializable> implements resttemplateCofiguration<E>{
 
 	
+	
 	@Value("${service.url}")
 	private String serviceURL;
 	
@@ -46,6 +47,7 @@ public class RestTemplateConf<E extends Serializable> implements resttemplateCof
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> entityHtml = new HttpEntity<String>(getJSONRequest(entity),headers);		
+		System.out.println(entityHtml.toString());
 		E postForObject = extracted(entity, url, restTemplate, entityHtml,servicePort);
 		return postForObject;
 	}
