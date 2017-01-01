@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import easyclean.sendmail.controller.CreateMessageService;
+import easyclean.sendmail.controller.SendMessageUtilService;
 import easyclean.sendmail.dto.Clients;
 import easyclean.sendmail.dto.Employee;
 import easyclean.sendmail.dto.Messages;
@@ -33,6 +34,9 @@ public class ApplicationTests {
 
 	@Autowired
 	private CreateMessageService message; 
+	
+	@Autowired 
+	SendMessageUtilService sendMessage;
 	
 	private PaySleep paySlip = new PaySleep();
 	
@@ -164,6 +168,7 @@ public class ApplicationTests {
 		this.beforeTest();
 		Assert.assertNotNull(message.createMessage(paySlip.getPaysliptPerEmployee()));		
 		for(Messages ms : message.createMessage(paySlip.getPaysliptPerEmployee())){
+			sendMessage.sendMessage(ms);
 			printMessage(ms);
 		}
 	}
@@ -175,6 +180,9 @@ public class ApplicationTests {
 		System.out.println("Body : " +   ms.getMessage());
 	}
 	
+	
+	
+	
 	@Test
 	public void testOneMessageAtTheTime(){
 		this.beforeTest();
@@ -183,6 +191,9 @@ public class ApplicationTests {
 			printMessage(message.createMessage(paySlipByEmployee));
 		}
 	}
+	
+	
+	
 	
 	
 

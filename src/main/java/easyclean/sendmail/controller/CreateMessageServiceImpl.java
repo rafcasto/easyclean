@@ -47,7 +47,7 @@ public class CreateMessageServiceImpl implements CreateMessageService{
 	
 	private Messages getMessageHeaderEmail(PayslipByEmployee employeePaySlip){
 		Messages message = new Messages();
-		message.setFrom("rafcasto@gmail.com"); //for the momment is hardcoded later will be replace by cleanning company model
+		message.setFrom("anything@easyclean.appspotmail.com"); //for the momment is hardcoded later will be replace by cleanning company model
 		message.setTo(employeePaySlip.getEmployee().getEmployeeEmail());
 		message.setEmployee(employeePaySlip.getEmployee());		
 		message.setSubject("Payslip From: " + employeePaySlip.getStartDate() + " To: " + employeePaySlip.getEndDate() );		
@@ -55,8 +55,8 @@ public class CreateMessageServiceImpl implements CreateMessageService{
 	}
 	
 	private String getBodyMessage(List<TimeSheets> timeSheets){
-		String emailTableBody = "<table border='1' width='400'>";
-		emailTableBody += "<th>Client</th><th>Date</th><th>Hours</th><th>Pay</th>";		
+		String emailTableBody = "<table style='border-color: #666;' cellpadding='10'>";
+		emailTableBody += "<tr  style='background: #eee;'><th>Client</th><th>Date</th><th>Hours</th><th>Pay</th></tr>";		
 		for(TimeSheets tmsd : timeSheets){
 			emailTableBody += "<tr>";
 			emailTableBody += "<td>" +tmsd.getClient().getCustomerName() + "</td>";
