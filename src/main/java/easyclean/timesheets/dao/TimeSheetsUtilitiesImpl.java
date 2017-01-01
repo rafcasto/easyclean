@@ -104,6 +104,8 @@ public class TimeSheetsUtilitiesImpl implements TimeSheetsUtilitiesService{
 		for(TimeSheets tms : paylip.getTimeSheets().stream().filter(distinctByKey(p -> p.getEmployee().getEmployeeEmail())).collect(Collectors.toList())){
 			PayslipByEmployee employeePayslip = new PayslipByEmployee();
 			employeePayslip.setEmployee(tms.getEmployee());
+			employeePayslip.setStartDate(paylip.getStartDate());
+			employeePayslip.setEndDate(paylip.getEndDate());
 			System.out.println("Setting employee success");
 			employeePayslip.setTimeSheets(paylip.getTimeSheets().stream().filter(p -> p.getEmployee().getEmployeeEmail().equals(tms.getEmployee().getEmployeeEmail())).collect(Collectors.toList()));
 			System.out.println("Setting timesheets by employee success");
