@@ -1,9 +1,12 @@
 package easyclean.sendmail.dto;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="messages")
 public class Messages {
+	
+
 	private String from;
 	public String getFrom() {
 		return from;
