@@ -27,10 +27,8 @@ public class SendEmailRest {
 	SendEmialService sendEmailServiceLogs;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public MessagesPerPaySlip create(@RequestBody PaySleep paySlip){		
-		MessagesPerPaySlip messagePerPaySlip = new MessagesPerPaySlip();		
-		messagePerPaySlip.setPaySlip(paySlip);
-		messagePerPaySlip.setListOfMessages(sendMessages(paySlip));
+	public MessagesPerPaySlip create(@RequestBody MessagesPerPaySlip messagePerPaySlip){						
+		messagePerPaySlip.setListOfMessages(sendMessages(messagePerPaySlip.getPaySlip()));
 		sendEmailServiceLogs.save(messagePerPaySlip);
 		return messagePerPaySlip;
 		
