@@ -164,6 +164,7 @@
                              <div class="content">
                              	    <form th:action="@{/payslip/save_payslip}" th:object="${payslip}" method="post">
                              	    <input type="hidden" name="companyCode"  th:value="LOPEZ01"/>
+                             	    <input type="hidden" th:field="*{id}"  />
                              	   
                              	    <div class="row">
                                         <div class="col-sm-3">
@@ -186,9 +187,7 @@
       
       
       	
-                                    <button type="submit" class="btn btn-primary btn-fill pull-right">
-                                    <span class="pe-7s-add-user "> Generate Payslip </span>
-                                    </button>
+                                    
 							  </div>                    
 			                					
                                                 
@@ -200,6 +199,20 @@
                                   
 
                                    
+                                    </div>
+                                    
+                                    <div class="row">
+                                                                 <div class="col-sm-6">
+                                                                 <div class="form-group">
+                                   <button type="submit" style=" margin-left: 5px;" name="Save" class="btn btn-primary btn-fill pull-right">
+                                    <span class="pe-7s-add-user "> Generate Payslip </span>
+                                    </button>
+                                                                          
+                                    <button type="submit" name="SendMail" class="btn btn-primary btn-fill pull-right">
+                                    <span class="pe-7s-mail "> Send Email</span>
+                                    </button>                              
+                                    </div>
+                                                                 </div>
                                     </div>
                                     
                                     

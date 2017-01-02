@@ -42,20 +42,25 @@ public class RestTemplateConf<E extends Serializable> implements resttemplateCof
 	@Override
 	public E getRestTemplatePost(E entity, String url,String servicePort) {
 		// TODO Auto-generated method stub
-		
 		RestTemplate restTemplate = new RestTemplate();		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<String> entityHtml = new HttpEntity<String>(getJSONRequest(entity),headers);		
+		HttpEntity<String> entityHtml = getEntityHtml(entity);		
 		System.out.println(entityHtml.toString());
 		E postForObject = extracted(entity, url, restTemplate, entityHtml,servicePort);
 		return postForObject;
 	}
+	
+	private HttpEntity<String> getEntityHtml(E entity){		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<String> entityHtml = new HttpEntity<String>(getJSONRequest(entity),headers);		
+		return entityHtml;
+	} 
 
 	@SuppressWarnings("unchecked")
 	private E extracted(E entity, String url, RestTemplate restTemplate, HttpEntity<String> entityHtml,String servicePort) {
 		return (E) restTemplate.postForObject(serviceURL+":"+servicePort+"/"+url, entityHtml, entity.getClass());
 	}
+	
 	
 	
 	private String getJSONRequest(E entity){
@@ -68,5 +73,7 @@ public class RestTemplateConf<E extends Serializable> implements resttemplateCof
 		}
 		return jsonRequest;
 	}
+
+	
 
 }

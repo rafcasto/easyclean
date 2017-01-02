@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import easyclean.admin.dto.Employee;
 import easyclean.admin.dto.PaySleep;
+import easyclean.admin.model.emails.emailService;
 import easyclean.admin.model.roster.rosterService;
 import easyclean.admin.model.timesheets.payslipService;
 
@@ -24,6 +25,10 @@ public class AdminPaySlipPage {
 	
 	@Autowired
 	rosterService rosterService;
+	
+	@Autowired
+	emailService emailService;
+	
 	
 	static Logger log = Logger.getLogger(AdminPaySlipPage.class.getName());
 
@@ -41,17 +46,35 @@ public class AdminPaySlipPage {
 		return "admindashboard/payslip_add";
 	}
 	
-	@RequestMapping(value = "/save_payslip",method = RequestMethod.POST)
+	@RequestMapping(value = "/save_payslip", params = "Save",method = RequestMethod.POST)
 	public String save_employee(@Valid PaySleep payslip , BindingResult bindingResult, Model model){
 		 if (bindingResult.hasErrors()) {
 			 log.error("Something wrong with the validation form" + bindingResult.getAllErrors().toString());
 	            return "admindashboard/payslip_add";
 	      }else{
+	    	  payslip.setId(payslip.getId().equals("") ? null : payslip.getId());
 	    	  payslip.setRosters(rosterService.findAll());
 	    	  payslip =  paySlip.addPaySleep(payslip);
 	      }		 		 
 		return "redirect:/payslip/show_payslip/"+payslip.getId();
 	}
+	
+	
+	@RequestMapping(value = "/save_payslip", params = "SendMail",method = RequestMethod.POST)
+	public String sendEmails(@Valid PaySleep payslip , BindingResult bindingResult, Model model){
+		 if (bindingResult.hasErrors()) {
+			 log.error("Something wrong with the validation form" + bindingResult.getAllErrors().toString());
+	            return "admindashboard/payslip_add";
+	      }else{
+	    	  System.out.println("before calling send email" + payslip.getId());
+	    	  
+	    	  payslip = paySlip.findPaySlip(payslip.getId());
+	    	  emailService.sendEmails(payslip);
+	    	  
+	      }		 		 
+		return "redirect:/payslip/show_payslip/"+payslip.getId();
+	}
+	
 	
 	@RequestMapping(value = "/show_payslip/{clientId}", method = RequestMethod.GET)
 	public String show_Clientss(@PathVariable("clientId") String clientId,  Model model){		
