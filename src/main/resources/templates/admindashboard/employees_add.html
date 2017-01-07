@@ -21,7 +21,10 @@
 <!-- Bootstrap Date-Picker Plugin -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+
 <script type="text/javascript" th:inline="javascript">
+
 
 
 	 $(document).ready(function(){
@@ -105,10 +108,10 @@
                     <div class="col-md-16">
                     <div class="card">
                     	 <div class="header">
-                                <h4 class="title">Add a New Employee</h4>
+                                <h4 class="title">Employee details</h4>
                             </div>
                              <div class="content">
-                             	    <form th:action="@{/employee/save_employee}" th:object="${employee}" method="post">
+                             	    <form id="employeeForm"  th:action="@{/employee/save_employee}" th:object="${employee}" method="post">
                              	    
                              	    <div class="row">
                                         <div class="col-md-5">
@@ -122,19 +125,22 @@
                              	    <div class="row">
                                         <div class="col-md-5">
                                       					
-                                      		<div class="form-group"> <!-- Date input -->
-        <label class="control-label" for="date">Start Date</label>
-        <input class="form-control" type="text" th:field="*{employeeStartDate}"
-       			
-        placeholder="yyyy-mm-dd"  id="pickyDate"/>
+                                      		<div  th:class="${#fields.hasErrors('employeeStartDate')} ? 'form-group has-error' : 'form-group'"> <!-- Date input -->
+        										<label class="control-label" for="date">Start Date</label>
+        											<input class="form-control" type="text" th:field="*{employeeStartDate}" placeholder="yyyy-mm-dd"  id="pickyDate"/>
 <!--         <input class="form-control" id="date" th:field="*{employeeStartDate}" name="date" placeholder="MM/DD/YYY" type="text"/> -->
       </div>			
                                       					
-							                      
+							                       <span th:if="${#fields.hasErrors('employeeStartDate')}" >
+                                                	<span class="alert alert-danger">Provide a valid employee's start date in the  format of YYYY-MM-DD</span>
+                                                </span>    
 
 							                					
-                                                <input type="hidden" name="companyCode"  th:value="LOPEZ01"/>
-                                            	 
+    			                                            <input type="hidden" name="companyCode"  th:value="LOPEZ01"/>
+    			                                            <input type="hidden" th:field="*{id}"  />
+    			                                            
+    			                                            
+	                                            	 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -144,25 +150,33 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">                                            
-                                            	<label for="employeeIRD">IRD Number</label>
-                                                <input name="employeeIRD" th:field="*{employeeIRD}"  type="text" class="form-control" placeholder="IRD" />
-                                                <span th:if="${#fields.hasErrors('employeeIRD')}" th:errors="*{employeeIRD}">Employee IRD is empty</span>                                            	                                                                                                
+                                            <div  th:class="${#fields.hasErrors('employeeIRD')} ? 'form-group has-error' : 'form-group'">                                      
+                                            	<label class="control-label" for="employeeIRD">IRD Number</label>
+                                                <input name="employeeIRD" th:field="*{employeeIRD}" type="number"    class="form-control" placeholder="IRD" />
+                                                <span th:if="${#fields.hasErrors('employeeIRD')}" >
+                                                	<span class="alert alert-danger">Provide a valid employee's IRD number</span>
+                                                </span>                                            	                                                                                                
                                             </div>
                                         </div>
                                     </div>
                                     
 									<div class="row">
                                         <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>First Name</label>
+                                            <div  th:class="${#fields.hasErrors('employeeName')} ? 'form-group has-error' : 'form-group'">
+                                                <label class="control-label" for="employeeName">First Name</label>
                                                 <input name="employeeName" th:field="*{employeeName}" type="text" class="form-control" placeholder="First Name"  />
+                                                <span th:if="${#fields.hasErrors('employeeName')}" >
+                                                	<span class="alert alert-danger">Provide a valid employee's first name</span>
+                                                </span>        
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
+                                              <div  th:class="${#fields.hasErrors('employeeLastName')} ? 'form-group has-error' : 'form-group'">
+                                                <label class="control-label" for="employeeLastName">Last Name</label>
                                                 <input name="employeeLastName" th:field="*{employeeLastName}" type="text" class="form-control" placeholder="Last Name"  />
+                                                <span th:if="${#fields.hasErrors('employeeLastName')}" >
+                                                	<span class="alert alert-danger">Provide a valid employee's last name</span>
+                                                </span>
                                             </div>
                                         </div>
                                         
@@ -181,35 +195,33 @@
                                     
                                     <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">                                            
-                                            	<label for="employeeEmail">Employee Email</label>
+                                      
+                                        <div  th:class="${#fields.hasErrors('employeeEmail')} ? 'form-group has-error' : 'form-group'">                                                                                     
+                                            	<label class="control-label" for="employeeEmail">Employee Email</label>
                                                 <input name="employeeEmail" th:field="*{employeeEmail}"  type="email" class="form-control" placeholder="test@test.com" />
-                                                <span th:if="${#fields.hasErrors('employeeEmail')}" th:errors="*{employeeEmail}">Employee Email is empty</span>                                            	                                                                                                
+                                                <span  th:if="${#fields.hasErrors('employeeEmail')}" >
+                                                	<span class="alert alert-danger">Please provide an employee's email</span>                                                
+                                                </span>                                            	                                                                                                
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-6">
-                                        <div class="form-group">                                            
-                                            	<label for="employeePhone">Employee Mobile</label>
-                                                <input name="employeePhone" th:field="*{employeePhone}"  type="text" class="form-control" placeholder="5555555555" />
-                                                <span th:if="${#fields.hasErrors('employeePhone')}" th:errors="*{employeePhone}">Employee Phone is empty</span>                                            	                                                                                                
+                                           <div  th:class="${#fields.hasErrors('employeePhone')} ? 'form-group has-error' : 'form-group'">                              
+                                            	<label class="control-label" for="employeePhone">Employee Mobile</label>
+                                                <input name="employeePhone" th:field="*{employeePhone}"  type="number" class="form-control" placeholder="5555555555" />
+                                                <span th:if="${#fields.hasErrors('employeePhone')}" >
+                                                <span class="alert alert-danger">Please provide a valid employee's contact number</span> 
+                                                </span>                                            	                                                                                                
                                             </div>
                                         </div>
                                     </div>
                                     
                                     
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>About Me</label>
-                                                <textarea name="field1" rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
 
 
-                                    <button type="submit" class="btn btn-primary btn-fill pull-right">
-                                    <span class="pe-7s-add-user "> Add Employee </span>
+                                    <button type="submit" id="employeesSubmit" class="btn btn-success btn-fill pull-right">
+                                    <span class="pe-7s-add-user "> Add employee </span>
                                     </button>
                                     <div class="clearfix"></div>
                                     

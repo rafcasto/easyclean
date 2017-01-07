@@ -5,7 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -15,6 +18,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Employee implements Serializable{
 	
+
+
+
 	private Profiles profile;
 	
 	public Profiles getProfile() {
@@ -87,10 +93,16 @@ public class Employee implements Serializable{
 		this.employeEndDate = employeEndDate;
 	}
 
+	@NotEmpty
 	private String employeeEmail;
 	private String employeeGender;
+	@NotEmpty
+	@Size(min=10,max=18)
 	private String employeePhone;
+	@NotEmpty
+	@Size(min=8,max=9)	
 	private String employeeIRD;
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(iso = ISO.DATE)
 	private Date employeeStartDate;
@@ -98,7 +110,8 @@ public class Employee implements Serializable{
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(iso = ISO.DATE)
 	private Date employeEndDate;
-	 
+	@NotEmpty
+	@Size(min= 2, max = 30)
 	private String employeeName;
 	public String getEmployeeName() {
 		return employeeName;
@@ -112,7 +125,8 @@ public class Employee implements Serializable{
 	public void setEmployeeLastName(String employeeLastName) {
 		this.employeeLastName = employeeLastName;
 	}
-
+	@NotEmpty
+	@Size(min= 2, max = 30)
 	private String employeeLastName;
 	
 	

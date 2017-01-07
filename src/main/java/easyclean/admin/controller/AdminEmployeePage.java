@@ -1,5 +1,6 @@
 package easyclean.admin.controller;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -31,9 +32,11 @@ public class AdminEmployeePage {
 	@Autowired
 	ProfilesServices profiles;
 	
+	
+	
 	@RequestMapping(value = "/show_employees", method = RequestMethod.GET)
 	public String show_employees(Model model){
-		model.addAttribute("employeesList",serviceEmployee.findAll());				
+		model.addAttribute("employeesList",serviceEmployee.findAll());						
 		return "admindashboard/employees";
 	}
 	
@@ -48,17 +51,20 @@ public class AdminEmployeePage {
 	public String save_employee(@Valid Employee employee , BindingResult bindingResult, Model model){
 		 if (bindingResult.hasErrors()) {
 			 log.error("Something wrong with the validation form" + bindingResult.getAllErrors().toString());
+			 	model.addAttribute("profiles",profiles.findAll());
 	            return "admindashboard/employees_add";
 	      }else{
+	    	  employee.setId(employee.getId().equals("") ? null : employee.getId());
 	    	  employee.setProfile(profiles.findProfile(employee.getProfile().getId()));	    	  
 	    	  serviceEmployee.addEmployee(employee);
 	      }		 		 
 		return "redirect:/employee/show_employees";
 	}
 	
+	
 	@RequestMapping(value = "/add_employee",method = RequestMethod.GET)
 	public String admin_employee_add(Model model){
-		model.addAttribute("profiles",profiles.findAll());
+		model.addAttribute("profiles",profiles.findAll());		
 		model.addAttribute("employee",new Employee());			
 		return "admindashboard/employees_add";
 	}
